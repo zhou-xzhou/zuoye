@@ -1,4 +1,4 @@
-pro\lcd.o: ..\BSP\LCD\LCD.c
+pro\lcd.o: ..\BSP\LCD\lcd.c
 pro\lcd.o: ..\BSP\LCD\lcd.h
 pro\lcd.o: ../SYSTEM/sys.h
 pro\lcd.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
@@ -29,10 +29,14 @@ pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc.h
+pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h
 pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
-pro\lcd.o: E:\ProgramFiles\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
-pro\lcd.o: ../SYSTEM/delay.h
+pro\lcd.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+pro\lcd.o: ../Core/Inc/main.h
 pro\lcd.o: ../Core/Inc/spi.h
 pro\lcd.o: ../Core/Inc/main.h
+pro\lcd.o: E:\ProgramFiles\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+pro\lcd.o: ../SYSTEM/delay.h

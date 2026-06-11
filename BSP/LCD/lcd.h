@@ -53,9 +53,10 @@
   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
 **************************************************************************************************/	
 #ifndef __LCD_H
-#define __LCD_H
+#define __LCD_H	
 
-#include "sys.h"	 
+#include "sys.h"
+#include "main.h"
 #include "stdlib.h"
 
 //LCD重要参数集
@@ -73,7 +74,7 @@ typedef struct
 //LCD参数
 extern _lcd_dev lcddev;	//管理LCD重要参数
 /////////////////////////////////////用户配置区///////////////////////////////////	 
-#define USE_HORIZONTAL  	 0//定义液晶屏顺时针旋转方向 	0-0度旋转，1-90度旋转，2-180度旋转，3-270度旋转
+#define USE_HORIZONTAL  	 1//定义液晶屏顺时针旋转方向 	0-0度旋转，1-90度旋转，2-180度旋转，3-270度旋转
 
 //////////////////////////////////////////////////////////////////////////////////	  
 //定义LCD的尺寸
@@ -92,29 +93,6 @@ extern u16  BACK_COLOR; //背景颜色.默认为白色
 #define RS   14       //寄存器/数据选择引脚  
 #define RST  12       //复位引脚
 
-//QDtech全系列模块采用了三极管控制背光亮灭，用户也可以接PWM调节背光亮度
-/*
-#define	LCD_LED PBout(LED) //LCD背光    		 
-#define LCD_CS  PBout(CS)
-#define LCD_RS  PBout(RS)
-#define LCD_RST PBout(RST)
-*/
-//如果使用官方库函数定义下列底层，速度将会下降到14帧每秒，建议采用我司推荐方法
-//以下IO定义直接操作寄存器，快速IO操作，刷屏速率可以达到28帧每秒！ 
-
-/*
-PA5     ------> SPI1_SCK
-PA6     ------> SPI1_MISO
-PA7     ------> SPI1_MOSI
-*/
-
-#define SPI_SCLK_GPIO_Port			GPIOA
-#define SPI_SCLK_Pin			    GPIO_PIN_5
-
-#define SPI_MOSI_GPIO_Port			GPIOA
-#define SPI_MOSI_Pin				GPIO_PIN_7
-
-
 #define LCD_SCLK_Clr() HAL_GPIO_WritePin(SPI_SCLK_GPIO_Port,SPI_SCLK_Pin,GPIO_PIN_RESET)//SCL=SCLK
 #define LCD_SCLK_Set() HAL_GPIO_WritePin(SPI_SCLK_GPIO_Port,SPI_SCLK_Pin,GPIO_PIN_SET)
 
@@ -124,25 +102,14 @@ PA7     ------> SPI1_MOSI
 #define LCD_RES_Clr()  HAL_GPIO_WritePin(RESET_GPIO_Port,RESET_Pin,GPIO_PIN_RESET)//RES
 #define LCD_RES_Set()  HAL_GPIO_WritePin(RESET_GPIO_Port,RESET_Pin,GPIO_PIN_SET)
 
-#define LCD_DC_Clr()   HAL_GPIO_WritePin(DC_GPIO_Port,DC_Pin,GPIO_PIN_RESET)//DC
-#define LCD_DC_Set()   HAL_GPIO_WritePin(DC_GPIO_Port,DC_Pin,GPIO_PIN_SET)
+#define LCD_RS_Clr()   HAL_GPIO_WritePin(DC_GPIO_Port,DC_Pin,GPIO_PIN_RESET)//DC
+#define LCD_RS_Set()   HAL_GPIO_WritePin(DC_GPIO_Port,DC_Pin,GPIO_PIN_SET)
 
 #define LCD_CS_Clr()   HAL_GPIO_WritePin(CS_GPIO_Port,CS_Pin,GPIO_PIN_RESET)//CS
 #define LCD_CS_Set()   HAL_GPIO_WritePin(CS_GPIO_Port,CS_Pin,GPIO_PIN_SET)
 
 #define LCD_BL_Clr()  HAL_GPIO_WritePin(BL_GPIO_Port,BL_Pin,GPIO_PIN_RESET)//BLK
 #define LCD_BL_Set()  HAL_GPIO_WritePin(BL_GPIO_Port,BL_Pin,GPIO_PIN_SET)
-
-#define	LCD_CS_SET  LCD_CS_Set() //GPIO_TYPE->BSRRL=1<<LCD_CS    //片选端口  	PB11
-#define	LCD_RS_SET	LCD_DC_Set() //GPIO_TYPE->BSRRL=1<<LCD_RS    //数据/命令  PB10	  
-#define	LCD_RST_SET	LCD_RES_Set() //GPIO_TYPE->BSRRL=1<<LCD_RST    //复位			PB12
-
- 							    
-#define	LCD_CS_CLR  LCD_CS_Clr() //GPIO_TYPE->BSRRH=1<<LCD_CS     //片选端口  	PB11
-#define	LCD_RS_CLR	LCD_DC_Clr() //GPIO_TYPE->BSRRH=1<<LCD_RS     //数据/命令  PB10	 
-#define	LCD_RST_CLR	LCD_RES_Clr() //GPIO_TYPE->BSRRH=1<<LCD_RST    //复位			  PB12
-
-				
 
 
 //画笔颜色

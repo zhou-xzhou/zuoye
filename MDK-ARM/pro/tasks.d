@@ -14,3 +14,4 @@ pro\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 pro\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 pro\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 pro\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h
+pro\tasks.o: E:\ProgramFiles\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h

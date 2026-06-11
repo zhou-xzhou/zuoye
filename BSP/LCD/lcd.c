@@ -1,4 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////////	 
+////////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //测试硬件：单片机STM32F407ZGT6,正点原子Explorer STM32F4开发板,主频168MHZ，晶振12MHZ
 //QDtech-TFT液晶驱动 for STM32 IO模拟
@@ -66,6 +67,11 @@ _lcd_dev lcddev;
 u16 POINT_COLOR = 0x0000,BACK_COLOR = 0xFFFF;  
 u16 DeviceCode;	 
 
+void LCD_WR_bus(u8 dat) //SPI写入一个字节
+{	
+    HAL_SPI_Transmit(&hspi1, &dat, 1, 0xFF);
+}
+
 /*****************************************************************************
  * @name       :void LCD_WR_REG(u8 data)
  * @date       :2018-08-09 
@@ -75,13 +81,11 @@ u16 DeviceCode;
 ******************************************************************************/
 void LCD_WR_REG(u8 data)
 { 
-   LCD_CS_CLR;     
-   LCD_RS_CLR;	  
-   //SPI_WriteByte(SPI1,data);
-   HAL_SPI_Transmit(&hspi1,&data,1,1);
-   LCD_CS_SET;	
+   LCD_CS_Clr();     
+   LCD_RS_Clr();	  
+   LCD_WR_bus(data);
+   LCD_CS_Set();	
 }
-
 
 /*****************************************************************************
  * @name       :void LCD_WR_DATA(u8 data)
@@ -92,11 +96,10 @@ void LCD_WR_REG(u8 data)
 ******************************************************************************/
 void LCD_WR_DATA(u8 data)
 {
-   LCD_CS_CLR;
-   LCD_RS_SET;
-   //SPI_WriteByte(SPI1,data);
-   HAL_SPI_Transmit(&hspi1,&data,1,1);
-   LCD_CS_SET;
+   LCD_CS_Clr();
+	 LCD_RS_Set();
+   LCD_WR_bus(data);
+   LCD_CS_Set();
 }
 
 /*****************************************************************************
@@ -134,13 +137,11 @@ void LCD_WriteRAM_Prepare(void)
 ******************************************************************************/	 
 void Lcd_WriteData_16Bit(u16 Data)
 {	
-   LCD_CS_CLR;
-   LCD_RS_SET;  
-   //SPI_WriteByte(SPI1,Data>>8);
-   //SPI_WriteByte(SPI1,Data);
-   LCD_WR_DATA(Data>>8);
-   LCD_WR_DATA(Data);
-   LCD_CS_SET;
+   LCD_CS_Clr();
+   LCD_RS_Set();  
+   LCD_WR_bus(Data>>8);
+   LCD_WR_bus(Data);
+   LCD_CS_Set();
 }
 
 /*****************************************************************************
@@ -168,8 +169,8 @@ void LCD_Clear(u16 Color)
 {
   unsigned int i,m;  
 	LCD_SetWindows(0,0,lcddev.width-1,lcddev.height-1);   
-	LCD_CS_CLR;
-	LCD_RS_SET;
+	LCD_CS_Clr();
+	LCD_RS_Set();
 	for(i=0;i<lcddev.height;i++)
 	{
     for(m=0;m<lcddev.width;m++)
@@ -177,16 +178,8 @@ void LCD_Clear(u16 Color)
 			Lcd_WriteData_16Bit(Color);
 		}
 	}
-	 LCD_CS_SET;
+	 LCD_CS_Set();
 } 
-
-/*****************************************************************************
- * @name       :void LCD_Clear(u16 Color)
- * @date       :2018-08-09 
- * @function   :Initialization LCD screen GPIO
- * @parameters :None
- * @retvalue   :None
-******************************************************************************/	
 
 /*****************************************************************************
  * @name       :void LCD_RESET(void)
@@ -197,9 +190,9 @@ void LCD_Clear(u16 Color)
 ******************************************************************************/	
 void LCD_RESET(void)
 {
-	LCD_RST_CLR;
+	LCD_RES_Clr();
 	delay_ms(100);	
-	LCD_RST_SET;
+	LCD_RES_Set();
 	delay_ms(50);
 }
 
@@ -312,7 +305,7 @@ void LCD_Init(void)
 
     LCD_direction(USE_HORIZONTAL);//设置LCD显示方向
 	LCD_BL_Set();//点亮背光	 
-	LCD_Clear(WHITE);//清全屏白色
+	//LCD_Clear(WHITE);//清全屏白色
 }
  
 /*****************************************************************************

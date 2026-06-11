@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "spi.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -57,7 +57,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BL_Pin GPIO_PIN_4
+#define T_CS_Pin GPIO_PIN_1
+#define T_CS_GPIO_Port GPIOC
+#define T_MISO_Pin GPIO_PIN_2
+#define T_MISO_GPIO_Port GPIOC
+#define T_MOSI_Pin GPIO_PIN_3
+#define T_MOSI_GPIO_Port GPIOC
+#define BL_Pin GPIO_PIN_0
 #define BL_GPIO_Port GPIOA
 #define CS_Pin GPIO_PIN_4
 #define CS_GPIO_Port GPIOC
@@ -65,6 +71,24 @@ void Error_Handler(void);
 #define RESET_GPIO_Port GPIOC
 #define DC_Pin GPIO_PIN_0
 #define DC_GPIO_Port GPIOB
+#define T_PEN_Pin GPIO_PIN_1
+#define T_PEN_GPIO_Port GPIOB
+#define T_PEN_EXTI_IRQn EXTI1_IRQn
+#define KEY1_Pin GPIO_PIN_8
+#define KEY1_GPIO_Port GPIOE
+#define KEY1_EXTI_IRQn EXTI9_5_IRQn
+#define T_SCK_Pin GPIO_PIN_10
+#define T_SCK_GPIO_Port GPIOB
+#define Red_Pin GPIO_PIN_8
+#define Red_GPIO_Port GPIOD
+#define Green_Pin GPIO_PIN_9
+#define Green_GPIO_Port GPIOD
+#define Blue_Pin GPIO_PIN_10
+#define Blue_GPIO_Port GPIOD
+#define MOTOR_AIN2_Pin GPIO_PIN_11
+#define MOTOR_AIN2_GPIO_Port GPIOD
+#define MOTOR_AIN1_Pin GPIO_PIN_12
+#define MOTOR_AIN1_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
 

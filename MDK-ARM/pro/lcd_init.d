@@ -1,9 +1,6 @@
-pro\lcd_init.o: ..\BSP\LCD\LCD_Init.c
-pro\lcd_init.o: ../Core/Inc/main.h
-pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
-pro\lcd_init.o: ../Core/Inc/stm32f4xx_hal_conf.h
-pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
-pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
+pro\lcd_init.o: ..\BSP\LCD\lcd_init.c
+pro\lcd_init.o: ..\BSP\LCD\lcd_init.h
+pro\lcd_init.o: ../SYSTEM/sys.h
 pro\lcd_init.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 pro\lcd_init.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
 pro\lcd_init.o: ../Drivers/CMSIS/Include/core_cm4.h
@@ -14,6 +11,10 @@ pro\lcd_init.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 pro\lcd_init.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 pro\lcd_init.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+pro\lcd_init.o: ../Core/Inc/stm32f4xx_hal_conf.h
+pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
+pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
+pro\lcd_init.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
 pro\lcd_init.o: E:\ProgramFiles\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
 pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
@@ -31,8 +32,9 @@ pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 pro\lcd_init.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
-pro\lcd_init.o: ..\BSP\LCD\LCD_Init.h
+pro\lcd_init.o: ..\BSP\LCD\lcd_config.h
+pro\lcd_init.o: ../Core/Inc/main.h
 pro\lcd_init.o: ../Core/Inc/spi.h
-pro\lcd_init.o: ../Core/Inc/tim.h
-pro\lcd_init.o: ..\SYSTEM\delay.h
-pro\lcd_init.o: ..\SYSTEM\sys.h
+pro\lcd_init.o: ../Core/Inc/main.h
+pro\lcd_init.o: ../Core/Inc/gpio.h
+pro\lcd_init.o: ../SYSTEM/delay.h
